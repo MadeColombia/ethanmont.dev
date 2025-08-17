@@ -1,6 +1,9 @@
-import React from 'react';
+interface VideoTitleProps {
+  firstVideo: string;
+  secondVideo: string;
+}
 
-const VideoTitle = () => {
+const VideoTitle = ({ firstVideo, secondVideo }: VideoTitleProps) => {
   return (
     <h1 className="font-sans font-black text-center flex flex-wrap justify-center items-center gap-x-[.20em] p-1 text-[clamp(1rem,8vw,20rem)] leading-none">
       <span>MASTERING</span>
@@ -11,12 +14,12 @@ const VideoTitle = () => {
         loop
         playsInline
       >
-        <source src="/videoTitle1.mp4" type="video/mp4" />
+        <source src={firstVideo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <span>THE</span>
 
-       {/* Force line break to keep exactly two lines */}
+      {/* Force line break to keep exactly two lines */}
       <span className="basis-full w-full h-0" aria-hidden="true" />
       
       <span>ART</span>
@@ -27,7 +30,7 @@ const VideoTitle = () => {
         loop
         playsInline
       >
-        <source src="/videoTitle2.mp4" type="video/mp4" />
+        <source src={secondVideo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <span>OF CODE</span>
