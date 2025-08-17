@@ -8,6 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  /* Use Urbanist as the sans font */
   --font-sans: var(--font-urbanist);
   --font-mono: var(--font-geist-mono);
 }
@@ -22,5 +23,6 @@
 body {
   background: var(--background);
   color: var(--foreground);
+  /* Apply Tailwind’s sans token site-wide */
   font-family: var(--font-sans);
 }

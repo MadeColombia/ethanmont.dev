@@ -2,28 +2,33 @@ import React from 'react';
 
 const VideoTitle = () => {
   return (
-    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-center flex flex-wrap justify-center items-center gap-x-4 gap-y-2">
-      <span>Mastering</span>
+    <h1 className="font-sans font-black text-center flex flex-wrap justify-center items-center gap-x-[.20em] p-1 text-[clamp(1rem,8vw,20rem)] leading-none">
+      <span>MASTERING</span>
       <video
-        className="w-32 sm:w-40 md:w-48 lg:w-56 h-auto rounded-md"
+        className="w-[1.5em] sm:w-[1.5em] md:w-[1.5em] h-auto rounded-md align-middle"
         autoPlay
         muted
         loop
         playsInline
       >
-        <source src="/video1.mp4" type="video/mp4" />
+        <source src="/videoTitle1.mp4" type="video/mp4" />
       </video>
-      <span>the art</span>
+      <span>THE</span>
+
+       {/* Force line break to keep exactly two lines */}
+      <span className="basis-full w-full h-0" aria-hidden="true" />
+      
+      <span>ART</span>
       <video
-        className="w-32 sm:w-40 md:w-48 lg:w-56 h-auto rounded-md"
+        className="w-[1.5em] sm:w-[1.5em] md:w-[1.5em] h-auto rounded-md align-middle"
         autoPlay
         muted
         loop
         playsInline
       >
-        <source src="/video2.mp4" type="video/mp4" />
+        <source src="/videoTitle2.mp4" type="video/mp4" />
       </video>
-      <span>of code</span>
+      <span>OF CODE</span>
     </h1>
   );
 };
