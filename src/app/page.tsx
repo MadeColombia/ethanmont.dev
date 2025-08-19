@@ -1,12 +1,18 @@
 import VideoTitle from "@/components/VideoTitle";
+import NavBar from "@/components/NavBar";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8">
-      <VideoTitle 
-        firstVideo="/videoTitle1.mp4"
-        secondVideo="/videoTitle2.mp4"
-      />
-    </main>
+    <main className="grid grid-cols-4 sm:grid-cols-8 md:grid-cols-12 gap-4 w-auto">
+      <div className="fixed top-0 left-0 right-0 z-50 lg:mx-24 md:mx-12 sm:mx-6 my-2 ">
+            <NavBar/>
+      </div>
+      <div className="col-span-4 sm:col-span-8 md:col-span-12 mt-20">
+        <VideoTitle 
+          firstVideo="/videoTitle1.mp4"
+          secondVideo="/videoTitle2.mp4"
+        />
+      </div>
+</main>
   );
 }
