@@ -1,12 +1,14 @@
+"use client"
+
 import { TranslateIcon, MenuIcon, EthanmontLogo } from '../tools/handleIcons';
 
 const Navbar = () => {
   const navLinks = [
-    { display: "About me" },
-    { display: "Projects" },
-    { display: "Expertises" },
-    { display: "Services" },
-    { display: "Contact" },
+    { display: "About me", href: "#" },
+    { display: "Projects", href: "#" },
+    { display: "Expertises", href: "#" },
+    { display: "Services", href: "#" },
+    { display: "Contact", href: "#" },
   ];
 
   const NavLinks = () => (
@@ -27,6 +29,7 @@ const Navbar = () => {
         <div className="relative">
           <input
             id="language-toggle"
+            alt='Language toggle'
             type="checkbox"
             className="peer absolute invisible"
           />
@@ -34,7 +37,8 @@ const Navbar = () => {
             htmlFor="language-toggle"
             className="block relative cursor-pointer outline-none select-none p-2 w-20 h-8 bg-gray-200 dark:bg-transparent rounded-full
                      before:block before:absolute before:content-[''] before:top-[2px] before:left-[2px] before:bottom-[2px] before:right-[2px] before:rounded-full
-                     after:block after:absolute after:content-[''] after:top-[2px] after:left-[2px] after:bottom-[2px] after:w-[40px] after:bg-white after:rounded-full after:transition-all after:duration-200"
+                     after:block after:absolute after:content-[''] after:top-[2px] after:left-[2px] after:bottom-[2px] after:w-[40px] after:bg-white after:rounded-full after:transition-transform after:duration-200
+                     peer-checked:after:translate-x-[36px]"
           />
           <span
             className="absolute top-2 pointer-events-none font-sans font-black text-xs uppercase text-center w-1/2 left-0 pl-1 text-black
@@ -48,11 +52,6 @@ const Navbar = () => {
           >
             EN
           </span>
-          <style>{`
-            #language-toggle:checked + label:after {
-              margin-left: 36px;
-            }
-          `}</style>
         </div>
       </div>
     );

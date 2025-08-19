@@ -13,7 +13,11 @@ export const TranslateIcon: React.FC<IconProps> = ({ width = 24, height = 24, cl
     fill="none" 
     xmlns="http://www.w3.org/2000/svg" 
     className={className}
+    aria-label="Translate"
+    role="img"
   >
+    <title>Translate Icon</title>
+    <desc>An icon representing language translation functionality</desc>
     <path d="M19.06 18.6699L16.92 14.3999L14.78 18.6699" stroke={fill} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     <path d="M15.1699 17.9099H18.6899" stroke={fill} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     <path d="M16.9201 22.0001C14.1201 22.0001 11.8401 19.73 11.8401 16.92C11.8401 14.12 14.1101 11.8401 16.9201 11.8401C19.7201 11.8401 22.0001 14.11 22.0001 16.92C22.0001 19.73 19.7301 22.0001 16.9201 22.0001Z" stroke={fill} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -29,13 +33,35 @@ export const TranslateIcon: React.FC<IconProps> = ({ width = 24, height = 24, cl
 
 
 export const MenuIcon: React.FC<IconProps> = ({ width = 72, height = 72, className = "", fill = "currentColor" }) => (
-  <svg width={width} height={height} viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+  <svg 
+    width={width} 
+    height={height} 
+    viewBox="0 0 72 72" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg" 
+    className={className}
+    aria-label="Menu"
+    role="img"
+  >
+    <title>Menu Icon</title>
+    <desc>A hamburger menu icon with three horizontal lines</desc>
     <path d="M9 54H63V48H9V54ZM9 39H63V33H9V39ZM9 18V24H63V18H9Z" fill={fill}/>
   </svg>
 );
 
 export const EthanmontLogo: React.FC<IconProps> = ({ width = 486, height = 75, className = "", fill = "currentColor" }) => (
-  <svg width={width} height={height} viewBox="0 0 486 75" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+  <svg 
+    width={width} 
+    height={height} 
+    viewBox="0 0 486 75" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg" 
+    className={className}
+    aria-label="Ethanmont Logo"
+    role="img"
+  >
+    <title>Ethanmont Logo</title>
+    <desc>The Ethanmont brand logo</desc>
     <path d="M41.8578 50.6702L6.60889 35.926V14.848L41.8578 0V13.1867L12.8479 25.3351L41.8578 37.5354V50.6702Z" fill={fill}/>
     <path d="M48.467 50.6702V37.5354L77.4769 25.3351L48.467 13.2183V0L83.716 14.848V35.926L48.467 50.6702Z" fill={fill}/>
     <path d="M90.3254 55.0085L45.1627 74.7241L0 55.0085L4.30177 42.6335L45.1627 60.472L86.0226 42.6335L90.3254 55.0085Z" fill={fill}/>
