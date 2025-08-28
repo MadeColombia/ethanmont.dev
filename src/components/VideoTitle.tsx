@@ -8,7 +8,7 @@ const VideoTitle = ({ firstVideo, secondVideo }: VideoTitleProps) => {
     <h1 className="font-sans font-black text-center flex flex-wrap justify-center items-center gap-x-[.20em] p-1 text-[clamp(1rem,8vw,20rem)] leading-none">
       <span>MASTERING</span>
       <video
-        className="w-[1.5em] h-auto rounded-md align-middle"
+        className="w-[1.5em] h-auto rounded-2xl align-middle"
         autoPlay
         muted
         loop
@@ -24,7 +24,7 @@ const VideoTitle = ({ firstVideo, secondVideo }: VideoTitleProps) => {
       
       <span>ART</span>
       <video
-        className="w-[1.5em] h-auto rounded-md align-middle"
+        className="w-[1.5em] h-auto rounded-2xl align-middle"
         autoPlay
         muted
         loop
