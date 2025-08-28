@@ -1,7 +1,6 @@
-"use client"
+"use client";
 import Image from 'next/image';
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import { useLayoutEffect, useRef } from 'react';
 
 interface FloatingImageProps {
     src: string;
@@ -11,33 +10,41 @@ interface FloatingImageProps {
 }
 
 const FloatingImage = ({ src, alt, width, height }: FloatingImageProps) => {
-    const imageRef = useRef(null);
+    const imageRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const image = imageRef.current;
+    useLayoutEffect(() => {
+        const floatingImage = imageRef.current;
+        if (!floatingImage) return;
 
-        // Create floating animation
-        gsap.to(image, {
-            y: 20,
-            duration: 2,
-            ease: "power1.inOut",
-            yoyo: true,
-            repeat: -1
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            return;
+        }
+
+        let ctx: gsap.Context;
+        import('gsap').then(({ gsap }) => {
+            ctx = gsap.context(() => {
+                // Create floating animation
+                gsap.to(floatingImage, {
+                    y: 20,
+                    duration: 2,
+                    ease: "power1.inOut",
+                    yoyo: true,
+                    repeat: -1
+                });
+
+                // Optional subtle rotation
+                gsap.to(floatingImage, {
+                    rotate: 3,
+                    duration: 3,
+                    ease: "power1.inOut",
+                    yoyo: true,
+                    repeat: -1
+                });
+            }, imageRef);
         });
 
-        // Optional subtle rotation
-        gsap.to(image, {
-            rotate: 3,
-            duration: 3,
-            ease: "power1.inOut",
-            yoyo: true,
-            repeat: -1
-        });
-
-        return () => {
-            // Cleanup animations when component unmounts
-            gsap.killTweensOf(image);
-        };
+        return () => ctx?.revert();
     }, []);
 
     return (
