@@ -13,8 +13,9 @@ const VideoTitle = ({ firstVideo, secondVideo }: VideoTitleProps) => {
         muted
         loop
         playsInline
+        preload="metadata"
       >
-        <source src={firstVideo} type="video/mp4" />
+        <source src={firstVideo} type="video/webm" />
         Your browser does not support the video tag.
       </video>
       <span>THE</span>
@@ -29,8 +30,9 @@ const VideoTitle = ({ firstVideo, secondVideo }: VideoTitleProps) => {
         muted
         loop
         playsInline
+        preload="metadata"
       >
-        <source src={secondVideo} type="video/mp4" />
+        <source src={secondVideo} type="video/webm" />
         Your browser does not support the video tag.
       </video>
       <span>OF CODE</span>

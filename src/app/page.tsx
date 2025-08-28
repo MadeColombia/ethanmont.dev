@@ -1,6 +1,8 @@
-import VideoTitle from "@/components/VideoTitle";
+import dynamic from 'next/dynamic';
 import NavBar from "@/components/NavBar";
-import AboutMe from "@/components/AboutMe";
+
+const VideoTitle = dynamic(() => import('@/components/VideoTitle'), { ssr: false });
+const AboutMe = dynamic(() => import('@/components/AboutMe'), { ssr: false });
 
 export default function Home() {
   return (
@@ -10,11 +12,11 @@ export default function Home() {
       </div>
       <div className="col-span-4 sm:col-span-8 md:col-span-12 mt-50 space-y-30">
         <VideoTitle 
-          firstVideo="/videoTitle1.mp4"
-          secondVideo="/videoTitle2.mp4"
+          firstVideo="/videoTitle1.webm"
+          secondVideo="/videoTitle2.webm"
         />
         <AboutMe 
-          imagePath="/ethanmontprofile.png"
+          imagePath="/ethanmontprofile.webp"
         />
       </div>
 </main>

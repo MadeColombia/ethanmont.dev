@@ -1,6 +1,9 @@
+"use client";
+import { useState, useEffect } from "react";
 import type { Metadata } from "next";
 import { Urbanist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const urbanist = Urbanist({
   variable: "--font-urbanist",
@@ -13,33 +16,27 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Ethan Mont Dev",
-  description: "Ethan Mont Dev - Personal Portfolio",
-  icons: {
-    icon: [
-      { url: '/icons/favicon.ico' },
-      { url: '/icons/favicon.svg' },
-      { url: '/icons/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
-      { url: '/icons/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/icons/apple-touch-icon.png' },
-    ],
-  },
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Adjust time as needed
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <html lang="en">
       <body
         className={`${urbanist.variable} ${geistMono.variable} font-sans antialiased`}
       >
-        {children}
+        {loading ? <LoadingScreen /> : children}
       </body>
     </html>
   );
