@@ -1,5 +1,10 @@
 "use client"
 import { useLayoutEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { TextPlugin } from 'gsap/TextPlugin';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(TextPlugin, ScrollTrigger);
 
 interface RotatingTextProps {
     words: string[];
@@ -18,32 +23,31 @@ const RotatingText = ({ words, interval = 3000 }: RotatingTextProps) => {
             return;
         }
 
-        let ctx: gsap.Context;
-        import('gsap/TextPlugin').then(TextPlugin => {
-            import('gsap').then(({gsap}) => {
-                gsap.registerPlugin(TextPlugin);
-                ctx = gsap.context(() => {
-                    const tl = gsap.timeline({ repeat: -1 });
+        let ctx = gsap.context(() => {
+            const tl = gsap.timeline({
+                repeat: -1,
+                scrollTrigger: {
+                    trigger: rotatingText,
+                    start: "top bottom",
+                    end: "bottom top",
+                    toggleActions: "play pause resume pause"
+                }
+            });
 
-                    words.forEach((word) => {
-                        // Animate text in
-                        tl.to(rotatingText, {
-                            duration: 0.6,
-                            text: word,
-                            ease: "power1.out",
-                        });
+            words.forEach((word) => {
+                tl.to(rotatingText, {
+                    duration: 0.6,
+                    text: word,
+                    ease: "power1.out",
+                });
+                tl.to(rotatingText, {
+                    duration: (interval / 1000) - 0.6,
+                    immediateRender: false
+                });
+            });
+        }, textRef);
 
-                        // Hold the text
-                        tl.to(rotatingText, {
-                            duration: (interval / 1000) - 0.6,
-                            immediateRender: false
-                        });
-                    });
-                }, textRef);
-            })
-        });
-
-        return () => ctx?.revert();
+        return () => ctx.revert();
     }, [words, interval]);
 
     return (

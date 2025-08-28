@@ -1,6 +1,10 @@
 "use client";
 import Image from 'next/image';
 import { useLayoutEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface FloatingImageProps {
     src: string;
@@ -21,30 +25,37 @@ const FloatingImage = ({ src, alt, width, height }: FloatingImageProps) => {
             return;
         }
 
-        let ctx: gsap.Context;
-        import('gsap').then(({ gsap }) => {
-            ctx = gsap.context(() => {
-                // Create floating animation
-                gsap.to(floatingImage, {
-                    y: 20,
-                    duration: 2,
-                    ease: "power1.inOut",
-                    yoyo: true,
-                    repeat: -1
-                });
+        let ctx = gsap.context(() => {
+            gsap.to(floatingImage, {
+                y: 20,
+                duration: 2,
+                ease: "power1.inOut",
+                yoyo: true,
+                repeat: -1,
+                scrollTrigger: {
+                    trigger: floatingImage,
+                    start: "top bottom",
+                    end: "bottom top",
+                    toggleActions: "play pause resume pause"
+                }
+            });
 
-                // Optional subtle rotation
-                gsap.to(floatingImage, {
-                    rotate: 3,
-                    duration: 3,
-                    ease: "power1.inOut",
-                    yoyo: true,
-                    repeat: -1
-                });
-            }, imageRef);
-        });
+            gsap.to(floatingImage, {
+                rotate: 3,
+                duration: 3,
+                ease: "power1.inOut",
+                yoyo: true,
+                repeat: -1,
+                scrollTrigger: {
+                    trigger: floatingImage,
+                    start: "top bottom",
+                    end: "bottom top",
+                    toggleActions: "play pause resume pause"
+                }
+            });
+        }, imageRef);
 
-        return () => ctx?.revert();
+        return () => ctx.revert();
     }, []);
 
     return (
